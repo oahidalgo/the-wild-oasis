@@ -1,8 +1,8 @@
 import { isFuture, isPast, isToday } from 'date-fns';
 import { useState } from 'react';
-import supabase from 'services/supabase';
-import Button from 'ui/Button';
-import { subtractDates } from 'utils/helpers';
+import supabase from '../services/supabase';
+import Button from '../ui/Button';
+import { subtractDates } from '../utils/helpers';
 import { bookings } from './data-bookings';
 import { cabins } from './data-cabins';
 import { guests } from './data-guests';
@@ -144,15 +144,15 @@ export function Uploader() {
       >
         Upload ALL sample data
       </Button>
-      <p>Only run this only once!</p>
+      {/* <p>Only run this only once!</p>
       <p>
         <em>(Cabin images need to be uploaded manually)</em>
-      </p>
+      </p> */}
       <hr />
       <Button onClick={uploadBookings} disabled={isLoading}>
         Upload CURRENT bookings
       </Button>
-      <p>You can run this every day you develop the app</p>
+      {/*<p>You can run this every day you develop the app</p> */}
     </div>
   );
 }
