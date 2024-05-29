@@ -114,7 +114,7 @@ function BookingRow({
       {/* VIDEO we could export this into own component... */}
       <Modal>
         <Menus.Menu>
-          {/* <Menus.Toggle id={bookingId} /> */}
+          <Menus.Toggle id={bookingId} />
           <Menus.List id={bookingId}>
             <Menus.Button
               onClick={() => navigate(`/bookings/${bookingId}`)}

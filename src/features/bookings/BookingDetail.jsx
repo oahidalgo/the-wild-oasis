@@ -25,15 +25,15 @@ const HeadingGroup = styled.div`
 `;
 
 function BookingDetail() {
-  const { booking } = useBooking();
+  const { booking, isLoading } = useBooking();
   const { mutate: deleteBooking, isLoading: isDeleting } = useDeleteBooking();
   const { mutate: checkout, isLoading: isCheckingOut } = useCheckout();
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
-  // if (isLoading) return <Spinner />;
-  // if (!booking) return <Empty resource='booking' />;
+  if (isLoading) return <Spinner />;
+  if (!booking) return <Empty resource='booking' />;
 
   const statusToTagName = {
     unconfirmed: 'blue',

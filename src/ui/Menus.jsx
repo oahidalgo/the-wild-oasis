@@ -83,7 +83,7 @@ function Menus({ children }) {
   );
 }
 
-function Toogle({ id }) {
+function Toggle({ id }) {
   const { open, close, openId, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
@@ -134,7 +134,7 @@ function Button({ children, icon, onClick }) {
 }
 
 Menus.Menu = Menu;
-Menus.Toogle = Toogle;
+Menus.Toggle = Toggle;
 Menus.List = List;
 Menus.Button = Button;
 
