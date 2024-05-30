@@ -3,26 +3,24 @@ import toast from 'react-hot-toast';
 import { updateBooking } from '../../services/apiBookings';
 import { useMoveBack } from '../../hooks/useMoveBack';
 
-export function useCheckin() {
+export function useCheckout() {
   const queryClient = useQueryClient();
   const moveBack = useMoveBack();
 
-  const { mutate: checkin, isLoading: isCheckingIn } = useMutation({
-    mutationFn: ({ bookingId, breakfast }) =>
+  const { mutate: checkout, isLoading: isCheckingOut } = useMutation({
+    mutationFn: (bookingId) =>
       updateBooking(bookingId, {
-        status: 'check-in',
-        isPaid: true,
-        ...breakfast,
+        status: 'check-out',
       }),
     onSuccess: (data) => {
-      toast.success(`Booking #${data.id} has been checked in.`);
+      toast.success(`Booking #${data.id} has been checkout in.`);
       queryClient.invalidateQueries({ active: true });
       moveBack();
     },
     onError: (error) => {
-      toast.error('There was an error while checking in');
+      toast.error('There was an error while checking out');
     },
   });
 
-  return { checkin, isCheckingIn };
+  return { checkout, isCheckingOut };
 }
