@@ -127,7 +127,7 @@ function BookingRow({
             )}
 
             <Modal.Open opens='delete'>
-              <Menus.Button icon={<HiTrash />}>Delete booking</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
