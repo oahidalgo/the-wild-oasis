@@ -1,4 +1,4 @@
-import { useDarkMode } from 'context/DarkModeContext';
+import { useDarkMode } from '../../context/DarkModeContext';
 import {
   Cell,
   Legend,
@@ -8,24 +8,26 @@ import {
   Tooltip,
 } from 'recharts';
 import styled from 'styled-components';
-import { box } from 'styles/styles';
-import Heading from 'ui/Heading';
+import Heading from '../../ui/Heading';
 
 const ChartBox = styled.div`
-  ${box}
-  padding: 2.4rem 3.2rem;
+  /* Box */
+  background-color: var(--color-grey-0);
+  border: 1px solid var(--color-grey-100);
+  border-radius: var(--border-radius-md);
 
+  padding: 2.4rem 3.2rem;
   grid-column: 3 / span 2;
+
+  & > *:first-child {
+    margin-bottom: 1.6rem;
+  }
 
   & .recharts-pie-label-text {
     font-weight: 600;
   }
-
-  /* A bit hack, but okay */
-  & > *:first-child {
-    margin-bottom: 1.6rem;
-  }
 `;
+
 /*
 const startDataLight = {
   '1 nights': {
