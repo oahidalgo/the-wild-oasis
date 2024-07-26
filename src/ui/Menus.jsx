@@ -1,11 +1,10 @@
-import styled from 'styled-components';
 import { createContext, useContext, useState } from 'react';
-import { HiEllipsisVertical } from 'react-icons/hi2';
 import { createPortal } from 'react-dom';
+import { HiEllipsisVertical } from 'react-icons/hi2';
+import styled from 'styled-components';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 
 const Menu = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -31,8 +30,7 @@ const StyledToggle = styled.button`
 `;
 
 const StyledList = styled.ul`
-  position: absolute;
-  z-index: 1;
+  position: fixed;
 
   background-color: var(--color-grey-0);
   box-shadow: var(--shadow-md);
@@ -40,7 +38,6 @@ const StyledList = styled.ul`
 
   right: ${(props) => props.position.x}px;
   top: ${(props) => props.position.y}px;
-  width: 16rem;
 `;
 
 const StyledButton = styled.button`
@@ -69,9 +66,11 @@ const StyledButton = styled.button`
 `;
 
 const MenusContext = createContext();
+
 function Menus({ children }) {
   const [openId, setOpenId] = useState('');
   const [position, setPosition] = useState(null);
+
   const close = () => setOpenId('');
   const open = setOpenId;
 
@@ -85,15 +84,17 @@ function Menus({ children }) {
 }
 
 function Toggle({ id }) {
-  const { open, close, openId, setPosition } = useContext(MenusContext);
+  const { openId, close, open, setPosition } = useContext(MenusContext);
 
   function handleClick(e) {
     e.stopPropagation();
+
     const rect = e.target.closest('button').getBoundingClientRect();
     setPosition({
-      x: -8,
-      y: rect.height,
+      x: window.innerWidth - rect.width - rect.x,
+      y: rect.y + rect.height + 8,
     });
+
     openId === '' || openId !== id ? open(id) : close();
   }
 
@@ -110,10 +111,11 @@ function List({ id, children }) {
 
   if (openId !== id) return null;
 
-  return (
+  return createPortal(
     <StyledList position={position} ref={ref}>
       {children}
-    </StyledList>
+    </StyledList>,
+    document.body
   );
 }
 

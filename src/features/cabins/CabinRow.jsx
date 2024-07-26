@@ -5,11 +5,22 @@ import { useDeleteCabin } from './useDeleteCabin';
 import { formatCurrency } from '../../utils/helpers';
 import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
 import { useCreateCabin } from './useCreateCabin';
-import ConfirmDelete from '../../ui/ConfirmDelete';
 import Modal from '../../ui/Modal';
+import ConfirmDelete from '../../ui/ConfirmDelete';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
-import { HiClipboardCopy } from 'react-icons/hi';
+
+// const TableRow = styled.div`
+//   display: grid;
+//   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
+//   column-gap: 2.4rem;
+//   align-items: center;
+//   padding: 1.4rem 2.4rem;
+
+//   &:not(:last-child) {
+//     border-bottom: 1px solid var(--color-grey-100);
+//   }
+// `;
 
 const Img = styled.img`
   display: block;
@@ -78,10 +89,16 @@ function CabinRow({ cabin }) {
         <Modal>
           <Menus.Menu>
             <Menus.Toggle id={cabinId} />
+
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              <Menus.Button
+                icon={<HiSquare2Stack />}
+                onClick={handleDuplicate}
+                disabled={isCreating}
+              >
                 Duplicate
               </Menus.Button>
+
               <Modal.Open opens='edit'>
                 <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
               </Modal.Open>
@@ -94,12 +111,13 @@ function CabinRow({ cabin }) {
             <Modal.Window name='edit'>
               <CreateCabinForm cabinToEdit={cabin} />
             </Modal.Window>
+
             <Modal.Window name='delete'>
               <ConfirmDelete
                 resourceName='cabins'
                 disabled={isDeleting}
                 onConfirm={() => deleteCabin(cabinId)}
-              ></ConfirmDelete>
+              />
             </Modal.Window>
           </Menus.Menu>
         </Modal>

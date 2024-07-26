@@ -7,5 +7,5 @@ export function useTodayActivity() {
     queryKey: ['today-activity'],
   });
 
-  return { isLoading, activities };
+  return { activities, isLoading };
 }

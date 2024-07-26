@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import Spinner from "../../ui/Spinner";
-import CabinRow from "./CabinRow";
-import { useCabins } from "./useCabins";
+import Spinner from '../../ui/Spinner';
+import CabinRow from './CabinRow';
+import { useCabins } from './useCabins';
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -34,8 +34,8 @@ function CabinTable() {
   if (isLoading) return <Spinner />;
 
   return (
-    <Table role="table">
-      <TableHeader role="row">
+    <Table role='table'>
+      <TableHeader role='row'>
         <div></div>
         <div>Cabin</div>
         <div>Capacity</div>

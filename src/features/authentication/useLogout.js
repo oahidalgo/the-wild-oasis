@@ -9,14 +9,10 @@ export function useLogout() {
   const { mutate: logout, isLoading } = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {
-      // Redirect to the login page
       queryClient.removeQueries();
-      navigate('/', { replace: true });
+      navigate('/login', { replace: true });
     },
   });
 
-  return {
-    logout,
-    isLoading,
-  };
+  return { logout, isLoading };
 }

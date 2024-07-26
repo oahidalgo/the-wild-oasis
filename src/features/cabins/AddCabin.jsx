@@ -1,6 +1,5 @@
-import { Button } from '../../ui/Button';
+import Button from '../../ui/Button';
 import CreateCabinForm from './CreateCabinForm';
-import CabinTable from './CabinTable';
 import Modal from '../../ui/Modal';
 
 function AddCabin() {

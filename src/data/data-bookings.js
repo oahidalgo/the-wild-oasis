@@ -192,7 +192,7 @@ export const bookings = [
     guestId: 17,
     hasBreakfast: false,
     observations:
-      "We will be checking in late, around midnight. Hope that's okay :)",
+      'We will be checking in late, around midnight. Hope that's okay :)',
     isPaid: true,
     numGuests: 6,
   },
